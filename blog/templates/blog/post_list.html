@@ -1,5 +1,9 @@
+   {% load staticfiles %}
 <html>
         <head>
+          <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+          <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+              <link rel="stylesheet" href="{% static 'css/blog.css' %}">
           <style>
             body{
               background-color: grey;
@@ -33,6 +37,13 @@
               color: Red;
               font-size: 30px;
               font-style:oblique;
+
+            }
+
+            .post{
+              color: green;
+              font-size: 20px;
+
             }
           </style>
 
@@ -44,6 +55,15 @@
             <div id="colum1">
             <div>
                 <h1 class="titulo"><a href="">Django Girls Blog</a></h1>
+                {% for post in posts %}
+
+                <div class="post">
+                    <p>published: {{ post.published_date }}</p>
+                    <h1><a href="">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+                {% endfor %}
+
             </div>
 
             <div>
@@ -64,4 +84,5 @@
           </section>
 
         </body>
+
     </html>
